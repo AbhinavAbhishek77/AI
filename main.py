@@ -16,7 +16,7 @@ if edenai_api_key is None:
     raise ValueError("EdenAI API key not found. Please set the EDENAI_API_KEY environment variable.")
 
 st.set_page_config(
-    page_title="GenAI Demo | Trigent AXLR8 Labs",
+    page_title="Ai Comic Strip Creator",
     layout="wide",
     initial_sidebar_state="expanded"
 )
