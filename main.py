@@ -462,6 +462,172 @@
 
 
 
+# import os
+# import json
+# import requests
+# from dotenv import load_dotenv
+# import streamlit as st
+# from PIL import Image
+
+# # Load environment variables
+# load_dotenv()
+# edenai_api_key = os.getenv("EDENAI_API_KEY")
+
+# if edenai_api_key is None:
+#     raise ValueError("EdenAI API key not found. Please set the EDENAI_API_KEY environment variable.")
+
+# favicon = Image.open("favicon.png")
+
+# st.set_page_config(
+#     page_title="GenAI Demo | Trigent AXLR8 Labs",
+#     page_icon=favicon,
+#     layout="wide",
+#     initial_sidebar_state="expanded"
+# )
+
+# # Custom CSS Styling
+# st.markdown("""
+# <style>
+#     /* Main Container */
+#     .stApp {
+#         background: #f0f2f6;
+#         padding-bottom: 100px;
+#     }
+
+#     /* Header */
+#     h1 {
+#         color: #2a3f5f;
+#         font-family: 'Helvetica Neue', sans-serif;
+#         font-size: 2.5em;
+#         text-align: center;
+#         margin-bottom: 30px;
+#         text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+#     }
+
+#     /* Input Fields */
+#     .stTextArea textarea, .stTextInput input {
+#         background: #ffffff !important;
+#         border-radius: 15px !important;
+#         border: 2px solid #e0e0e0 !important;
+#         padding: 15px !important;
+#         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+#         transition: all 0.3s ease !important;
+#     }
+
+#     .stTextArea textarea:focus, .stTextInput input:focus {
+#         border-color: #667eea !important;
+#         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+#     }
+
+#     /* Generate Button */
+#     .stButton>button {
+#         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+#         color: white !important;
+#         border-radius: 12px !important;
+#         padding: 12px 30px !important;
+#         font-weight: bold !important;
+#         border: none !important;
+#         transition: transform 0.3s ease;
+#         width: 100%;
+#         margin-top: 20px;
+#     }
+
+#     .stButton>button:hover {
+#         transform: scale(1.05);
+#         box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
+#     }
+
+#     /* Image Display */
+#     .stImage {
+#         border-radius: 20px;
+#         overflow: hidden;
+#         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+#         transition: transform 0.3s ease;
+#         margin: 20px 0;
+#         border: 3px solid white;
+#     }
+
+#     /* Footer */
+#     .footer {
+#         background: #2a3f5f !important;
+#         padding: 15px !important;
+#         color: white !important;
+#         position: relative;
+#         bottom: 0;
+#         width: 100%;
+#     }
+
+#     .footer a {
+#         color: #a3b8ff !important;
+#         text-decoration: none !important;
+#         margin: 0 10px;
+#         transition: color 0.3s ease;
+#     }
+# </style>
+# """, unsafe_allow_html=True)
+
+# # Main Content
+# st.title("📖 Your Imagination, Our AI—Let's Create Magic! 😀")
+
+# SCENARIO = st.text_area(
+#     "✏️Describe your scene and let AI do the rest!",
+#     height=200,
+#     placeholder="Example: A mystical forest with glowing mushrooms under a twilight sky..."
+# )
+
+# STYLE = st.text_input(
+#     "🖌️ Realistic, cartoonish, or abstract? Define your world!",
+#     placeholder="Example: fantasy watercolor painting style"
+# )
+
+# def generate_comic_image(prompt):
+#     url = "https://api.edenai.run/v2/image/generation"
+#     headers = {"Authorization": f"Bearer {edenai_api_key}"}
+#     payload = {
+#         "providers": "stabilityai",
+#         "text": prompt,
+#         "resolution": "1024x1024",
+#         "num_images": 1
+#     }
+
+#     try:
+#         response = requests.post(url, headers=headers, json=payload)
+#         response.raise_for_status()
+#         response_data = response.json()
+        
+#         if "stabilityai" in response_data and "items" in response_data["stabilityai"]:
+#             return response_data["stabilityai"]["items"][0]["image_resource_url"]
+#         return None
+#     except Exception as e:
+#         st.error(f"Error generating image: {str(e)}")
+#         return None
+
+# if st.button("Generate Image"):
+#     if not SCENARIO.strip() or not STYLE.strip():
+#         st.warning("Please fill in both the scene description and style fields!")
+#     else:
+#         with st.spinner("Creating your masterpiece..."):
+#             full_prompt = f"{SCENARIO}, {STYLE}"
+            
+#             # Display prompt
+#             st.markdown(f"""
+#             <div style='background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 15px 0;'>
+#                 <h4 style='color: #2a3f5f; margin: 0;'>Generating Image with prompt:</h4>
+#                 <p style='color: #4a5568; margin: 10px 0 0 0;'>{full_prompt}</p>
+#             </div>
+#             """, unsafe_allow_html=True)
+
+#             # Generate and display image
+#             image_url = generate_comic_image(full_prompt)
+            
+#             if image_url:
+#                 st.image(image_url, 
+#                         caption="Your Custom Creation",
+#                         use_column_width=True)
+#             else:
+#                 st.error("Failed to generate image. Please try again with a different prompt.")
+
+
 import os
 import json
 import requests
@@ -478,6 +644,7 @@ if edenai_api_key is None:
 
 favicon = Image.open("favicon.png")
 
+# Streamlit page configuration
 st.set_page_config(
     page_title="GenAI Demo | Trigent AXLR8 Labs",
     page_icon=favicon,
@@ -485,26 +652,25 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS Styling
+# Custom CSS for a sleek UI
 st.markdown("""
 <style>
     /* Main Container */
     .stApp {
-        background: #f0f2f6;
+        background: linear-gradient(135deg, #f0f2f6 0%, #e2e8f0 100%);
         padding-bottom: 100px;
+        font-family: "Helvetica Neue", sans-serif;
     }
 
-    /* Header */
+    /* Header Title */
     h1 {
         color: #2a3f5f;
-        font-family: 'Helvetica Neue', sans-serif;
-        font-size: 2.5em;
         text-align: center;
         margin-bottom: 30px;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
-    /* Input Fields */
+    /* Text Area & Text Input */
     .stTextArea textarea, .stTextInput input {
         background: #ffffff !important;
         border-radius: 15px !important;
@@ -513,7 +679,6 @@ st.markdown("""
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease !important;
     }
-
     .stTextArea textarea:focus, .stTextInput input:focus {
         border-color: #667eea !important;
         box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
@@ -527,17 +692,16 @@ st.markdown("""
         padding: 12px 30px !important;
         font-weight: bold !important;
         border: none !important;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
         width: 100%;
         margin-top: 20px;
     }
-
     .stButton>button:hover {
         transform: scale(1.05);
         box-shadow: 0 8px 15px rgba(102, 126, 234, 0.3);
     }
 
-    /* Image Display */
+    /* Generated Image */
     .stImage {
         border-radius: 20px;
         overflow: hidden;
@@ -546,39 +710,50 @@ st.markdown("""
         margin: 20px 0;
         border: 3px solid white;
     }
+    .stImage:hover {
+        transform: scale(1.01);
+    }
 
     /* Footer */
     .footer {
         background: #2a3f5f !important;
         padding: 15px !important;
         color: white !important;
-        position: relative;
+        position: fixed;
         bottom: 0;
         width: 100%;
+        text-align: center;
     }
-
     .footer a {
         color: #a3b8ff !important;
         text-decoration: none !important;
         margin: 0 10px;
         transition: color 0.3s ease;
     }
+    .footer a:hover {
+        color: #fff !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-# Main Content
+# App Title
 st.title("📖 Your Imagination, Our AI—Let's Create Magic! 😀")
 
-SCENARIO = st.text_area(
-    "✏️Describe your scene and let AI do the rest!",
-    height=200,
-    placeholder="Example: A mystical forest with glowing mushrooms under a twilight sky..."
-)
+# Two-column layout for prompts
+col1, col2 = st.columns(2)
 
-STYLE = st.text_input(
-    "🖌️ Realistic, cartoonish, or abstract? Define your world!",
-    placeholder="Example: fantasy watercolor painting style"
-)
+with col1:
+    SCENARIO = st.text_area(
+        "✏️Describe your scene and let AI do the rest!",
+        height=200,
+        placeholder="Example: A mystical forest with glowing mushrooms under a twilight sky..."
+    )
+
+with col2:
+    STYLE = st.text_input(
+        "🖌️ Realistic, cartoonish, or abstract? Define your world!",
+        placeholder="Example: fantasy watercolor painting style"
+    )
 
 def generate_comic_image(prompt):
     url = "https://api.edenai.run/v2/image/generation"
@@ -594,7 +769,7 @@ def generate_comic_image(prompt):
         response = requests.post(url, headers=headers, json=payload)
         response.raise_for_status()
         response_data = response.json()
-        
+
         if "stabilityai" in response_data and "items" in response_data["stabilityai"]:
             return response_data["stabilityai"]["items"][0]["image_resource_url"]
         return None
@@ -602,6 +777,7 @@ def generate_comic_image(prompt):
         st.error(f"Error generating image: {str(e)}")
         return None
 
+# Generate Image Button
 if st.button("Generate Image"):
     if not SCENARIO.strip() or not STYLE.strip():
         st.warning("Please fill in both the scene description and style fields!")
@@ -609,7 +785,6 @@ if st.button("Generate Image"):
         with st.spinner("Creating your masterpiece..."):
             full_prompt = f"{SCENARIO}, {STYLE}"
             
-            # Display prompt
             st.markdown(f"""
             <div style='background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 15px 0;'>
                 <h4 style='color: #2a3f5f; margin: 0;'>Generating Image with prompt:</h4>
@@ -617,19 +792,47 @@ if st.button("Generate Image"):
             </div>
             """, unsafe_allow_html=True)
 
-            # Generate and display image
             image_url = generate_comic_image(full_prompt)
             
             if image_url:
-                st.image(image_url, 
-                        caption="Your Custom Creation",
-                        use_column_width=True)
+                st.image(
+                    image_url,
+                    caption="Your Custom Creation",
+                    use_column_width=True
+                )
             else:
                 st.error("Failed to generate image. Please try again with a different prompt.")
 
+
 # Footer
 st.markdown("""
-<div class="footer">
-    Created By Abhinav Abhishek
-</div>
+    <style>
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <div class="footer">
+        <p class="footer-text">
+            Made with <span style="color: #e25555;">♥</span> by
+            <a href="https://github.com/AbhinavAbhishek77/AI-Comic-Strip-Creator" target="_blank">Abhinav Abhishek</a>
+            @ <span class="highlight">National Institute of Technology Agartala</span>
+        </p>
+    </div>
 """, unsafe_allow_html=True)
