@@ -329,8 +329,13 @@ if generate_button:
 # ----------------------------------------------------------------------------
 #                                  FOOTER
 # ----------------------------------------------------------------------------
-st.markdown("""
-<div class="footer">
-    Created By Abhinav Abhishek
-</div>
-""", unsafe_allow_html=True)
+import streamlit as st
+
+st.markdown(
+    """
+    <div class="footer">
+        Created By <a href="https://github.com/AbhinavAbhishek77" target="_blank" style="text-decoration: none; color: blue;">Abhinav Abhishek</a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
