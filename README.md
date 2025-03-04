@@ -1,23 +1,15 @@
-AI Comic Strip Creator 🎨🤖
-Combine DALL·E/Stable Diffusion for images and GPT-4 for dialogues to generate custom comic strips—right from your imagination to reality!
+# AI Comic Strip Creator
+
+This project is an AI-powered comic strip generator that creates visual stories by combining AI-generated images and text. It uses **DALL-E/Stable Diffusion** for image generation and **GPT-4** for dialogue creation, integrated via **LangChain**.
 
 
 
-Project Vision ✨
-AI Comic Strip Creator is a visionary project aiming to:
+---
 
-Generate comic panels using powerful diffusion models like Stable Diffusion or DALL·E.
-Compose dialogues and text bubbles via GPT-4 for nuanced storytelling.
-Streamline the creation workflow so users can go from “idea” to “comic strip” in minutes!
+## **Features**
 
-
-
-Architecture & Tech Stack 🏗️
-Frameworks & Libraries:
-
-Hugging Face Transformers for GPT-4 pipeline integration
-LangChain for advanced prompt orchestration
-OpenAI API for text generation
-Stable Diffusion / DALL·E for image generation
-spaCy / NLTK for NLP tasks
-TensorFlow / PyTorch for deep learning backends
+- **Backend**: FastAPI for handling API requests.
+- **Frontend**: Streamlit for a user-friendly interface.
+- **Data Processing**: spaCy for text preprocessing.
+- **Image Generation**: Stable Diffusion for AI-powered artwork.
+- **Dialogue Generation**: GPT-4 via LangChain for dynamic conversations.

@@ -210,6 +210,8 @@ st.markdown("""
 @media (max-width: 768px) {
     .hero-title {
         font-size: 1.8rem;
+            
+            
     }
     .hero-subtitle {
         font-size: 0.95rem;
@@ -324,7 +326,8 @@ if generate_button:
                     with columns[i]:
                         st.image(img_url, 
                                  caption=f"Panel {i+1}", 
-                                 use_column_width=True)
+                                #  use_column_width=True
+                                 )
 
 # ----------------------------------------------------------------------------
 #                                  FOOTER
@@ -339,3 +342,10 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+
+
+
+
+
+
