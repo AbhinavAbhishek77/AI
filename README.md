@@ -6,7 +6,7 @@ This project is an **AI-powered comic strip generator** that creates visual stor
 
 ## 🎥 Demo Video
 
-[![Watch the Demo](https://drive.google.com/file/d/1GeLzWI64kDLc_UTW_TTA5LLO27ckKguF/view?usp=sharing)
+[Watch the Demo](https://drive.google.com/file/d/1GeLzWI64kDLc_UTW_TTA5LLO27ckKguF/view?usp=sharing)
 
 🔹 Click the above to watch the demo.
 
